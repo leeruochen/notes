@@ -13,15 +13,72 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "embedded/lectures/lec 2.md",
+                "file": "embedded/lectures/lec_condensed.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "lec_condensed"
+            }
+          },
+          {
+            "id": "517a68781e59dab0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "embedded/quizzes/lecquiz_formatted.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "lec 2"
+              "title": "lecquiz_formatted"
+            }
+          },
+          {
+            "id": "17d5972956de1f00",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "embedded/quizzes/labquiz_formatted.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "labquiz_formatted"
+            }
+          },
+          {
+            "id": "be99b0c70a31dab6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "embedded/bughunt notes/bughunt.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "bughunt"
+            }
+          },
+          {
+            "id": "8d374413009a61e4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "embedded/bughunt notes/hunt tests.md",
+                "mode": "preview",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "hunt tests"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -185,35 +242,46 @@
       "bases:Create new base": false
     }
   },
-  "active": "10d858485df6a6b2",
+  "active": "8d374413009a61e4",
   "lastOpenFiles": [
-    "embedded/lectures/lec 1.md",
-    "embedded/bughunt notes/bughunt2_study_notes.md",
-    "embedded/bughunt notes/bughunt1_study_notes.md",
-    "embedded/lectures/lec 2.md",
+    "embedded/bughunt notes/bughunt.md",
     "README.md",
-    "embedded/lectures/Unconfirmed 668936.crdownload",
-    "holygrail/01_GUIDE.md",
-    "holygrail/reference/Resources.md",
-    "holygrail/reference/legacy_stack_buffer_overflow.md",
-    "holygrail/00_INDEX.md",
-    "holygrail/phase-2-enumeration/80_443_http/sqli.md",
-    "holygrail/Unconfirmed 949075.crdownload",
-    "holygrail/phase-2-enumeration/80_443_http/sqli-draft.md",
-    "holygrail/phase-2-enumeration/139_445_smb/anonymous_enum.md",
-    "holygrail/phase-2-enumeration/139_445_smb/00_smb_enum.md",
-    "holygrail/phase-5-active-directory/02_bloodhound_and_acl_paths.md",
-    "holygrail/phase-5-active-directory/02_bloodhound_and_acl_paths - Copy.md",
-    "holygrail/phase-5-active-directory/04_kerberos_advanced_paths - Copy.md",
-    "holygrail/phase-5-active-directory/04_kerberos_advanced_paths.md",
-    "holygrail/99_STUCK_RESET.md",
-    "holygrail/phase-1-active-recon/Active Recon.md",
-    "bughunt notes/bughunt1_study_notes.md",
-    "holygrail/phase-5-active-directory/03_credential_access.md",
-    "holygrail/phase-5-active-directory/01_credentials_and_spraying.md",
-    "holygrail/phase-5-active-directory/00_AD_SERVICES.md",
-    "holygrail/phase-5-active-directory/00_AD_METHODOLOGY.md",
-    "holygrail/phase-2-enumeration/6379_redis.md",
-    "holygrail/phase-2-enumeration/110_143_pop3_imap.md"
+    "embedded/bughunt notes/hunt tests.md",
+    "embedded/bughunt notes/bug_hunt_drill_6_fixed_code_study_notes.md",
+    "embedded/bughunt notes/Unconfirmed 200610.crdownload",
+    "embedded/bughunt notes/bug_hunt_drill_5_fixed_code_study_notes.md",
+    "embedded/bughunt notes/Unconfirmed 692650.crdownload",
+    "embedded/bughunt notes/bug_hunt_drill_4_fixed_code_study_notes.md",
+    "embedded/bughunt notes/Unconfirmed 6978.crdownload",
+    "embedded/bughunt notes/bug_hunt_drill_3_fixed_code_study_notes.md",
+    "embedded/bughunt notes/Unconfirmed 930319.crdownload",
+    "embedded/quizzes/labquiz_formatted.md",
+    "embedded/bughunt notes/bug_hunt_drill_2_fixed_code_study_notes.md",
+    "embedded/bughunt notes/Unconfirmed 971919.crdownload",
+    "embedded/bughunt notes/Unconfirmed 277862.crdownload",
+    "ethhack/schctf3.md",
+    "ethhack/schctf1.md",
+    "ethhack/revision2.md",
+    "embedded/lectures/lec_condensed.md",
+    "embedded/quizzes/lecquiz_formatted.md",
+    "ethhack/Pasted image 20261113112504.png",
+    "ethhack/Pasted image 20261113111742.png",
+    "ethhack/Pasted image 20261113111651.png",
+    "README 1.md",
+    "embedded/lectures/lec 1.md",
+    "embedded/bughunt notes/bughunt1_study_notes.md",
+    "embedded/bughunt notes/bughunt3_study_notes.md",
+    "embedded/bughunt notes/bughunt2_study_notes.md",
+    "embedded/lectures/Unconfirmed 250931.crdownload",
+    "embedded/quizzes/Unconfirmed 914628.crdownload",
+    "embedded/quizzes/Unconfirmed 500219.crdownload",
+    "embedded/quizzes/lecquiz.md",
+    "embedded/quizzes/Unconfirmed 163127.crdownload",
+    "embedded/quizzes/labquiz.md",
+    "ethhack/ctf_writeup_report.md",
+    "embedded/lectures/lec 4.md",
+    "ethhack/cyberblitz.md",
+    "embedded/lectures/lec 3.md",
+    "embedded/lectures/lec 2.md"
   ]
 }
