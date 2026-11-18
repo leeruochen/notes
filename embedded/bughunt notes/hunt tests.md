@@ -1214,7 +1214,7 @@ Tags: `#embedded-c` `#rp2040` `#freertos` `#bughunt` `#quiz-prep`
     - To measure a pulse width (start + end), enable **both** `GPIO_IRQ_EDGE_FALL | GPIO_IRQ_EDGE_RISE`. if the code has 2 state toggle like IDLE to ACTIVE
     - use single edge, so either edge fall or edge rise if ISR simply counts events or sets flags
         
-    - Avoid `GPIO_IRQ_LEVEL_LOW` on buttons—it re-fires continuously while the button is held down and freezes the CPU.
+    - Avoid `GPIO_IRQ_LEVEL_LOW` on buttons—it re-fires continuously while the button is held down and freezes the CPU., use edge fall for pull up, edge rise for pull down
         
 - **How to Differentiate Debounce Windows:**
     
