@@ -2,6 +2,9 @@
 
 Four binary exploitation challenges, each building on a different memory-safety bug class. This writeup walks through the reasoning behind each step, not just the final payload.
 
+
+source /home/milizes/pwntools-env/venv/bin/activate
+
 ---
 
 ## 1. Stack Lab — Classic Stack Buffer Overflow (ret2win)
