@@ -201,6 +201,8 @@
   },
   "active": "be99b0c70a31dab6",
   "lastOpenFiles": [
+    "ethhack/schctf2.md",
+    "ethhack/manual sqli.md",
     "ethhack/Pasted image 20261113111742.png",
     "cybersecurity_career_certification_guide_singapore.md",
     "ethhack/revision2.md",
@@ -227,7 +229,6 @@
     "eth hacking/phase-4-priv-escalation/linux/06_writable_files.md",
     "eth hacking/phase-4-priv-escalation/linux/05_capabilities.md",
     "eth hacking/phase-4-priv-escalation/linux/04_suid_binaries.md",
-    "eth hacking/phase-4-priv-escalation/linux/03_sudo_misconfig.md",
     "eth hacking/phase-4-priv-escalation/windows",
     "eth hacking/phase-4-priv-escalation/linux",
     "eth hacking/phase-2-enumeration/80_443_http",

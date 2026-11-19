@@ -1,36 +1,3 @@
----
-course: ICT2212 Ethical Hacking
-date: 2026-10-22
-tags:
-  - ethical-hacking
-  - ict2212
-  - cybersecurity
-  - exam-prep
-aliases:
-  - ICT2212 Master Notes
-  - Ethical Hacking Quiz Guide
----
-
-# ICT2212: Ethical Hacking — Master Revision Notes
-
-> [!abstract] How to Use This Note for Quiz Prep
-> * **Multiple Choice (MCQ):** Focus on **bolded specifications** (bit lengths, port numbers, hotkey combinations), **CLI flags**, and **Tool-to-Function tables**.
-> * **Multiple Select (MSQ):** Review the **bulleted limitation checklists**, **encoding bypass lists**, and **defense/mitigation summaries**.
-> * **Descriptive Questions:** Study the **numbered step-by-step execution flows** (802.1X EAP, KRACK, SQLi `UNION` enumeration, XSS/CSRF lifecycles, x86 stack frames, and GOT hijacking).
-> * **Active Recall:** Expand the collapsible `Practice Check` callouts at the end of each module to test yourself.
-
----
-
-## Table of Contents
-
-1. [[#1. Wireless & Bluetooth Hacking]]
-2. [[#2. Web Application Hacking]]
-3. [[#3. Maintaining Access (Backdoors, Trojans, Rootkits & Keyloggers)]]
-4. [[#4. Binary Exploitation (Buffer Overflows & Format String Attacks)]]
-5. [[#5. Covering Tracks & Advanced Persistent Threats (APTs)]]
-
----
-
 ## 1. Wireless & Bluetooth Hacking
 
 ### 1.1 WLAN Core Components & Identifiers
@@ -371,7 +338,12 @@ macchanger -b eth0                  # Pretend to be a burned-in address
 | **5** | **Enumerate Column Names**         | `cat=-1 UNION SELECT 1..10, group_concat(column_name) FROM information_schema.columns WHERE table_name='users'`    | `?q=s') UNION SELECT 1, sql, 3..9 FROM sqlite_master WHERE name='Users' --`                |
 | **6** | **Extract Credentials**            | `cat=-1 UNION SELECT 1..10, concat(uname,0x3a,pass,0x3a,email,0x3a,name) FROM users` *(Note: `0x3a` is `:`)*       | `?q=s') UNION SELECT id, email, password, '4','5','6','7','8','9' FROM Users --`           |
 
-* **SQLi Impacts:** Leakage of sensitive data, unauthorized modification/deletion of data, loss of reputation, full database server takeover, and Denial of Service.
+* **SQLi Impacts:** 
+	  - Leakage of sensitive data, 
+	  - unauthorized modification/deletion of data, 
+	  - loss of reputation, 
+	  - full database server takeover, 
+	  - and Denial of Service.
 * **SQLi Tools:** **SQLi Hunter** (discovers vulnerable sites via Google Dorks) and **SQLmap** (automates SQLi detection and database takeover).
 
 ---
@@ -555,15 +527,16 @@ Low Address:  0x00000000
 
 #### x86 Function Call & Return Lifecycle (Descriptive)
 1. **Caller Setup:**
-   * Pushes function arguments onto the stack in **reverse order** (`arg3`, `arg2`, `arg1`).
-   * Executes `call`, which pushes the **return address** (next `%eip`) onto the stack and jumps to the callee function.
-2. **Callee Prologue:**
-   * `push %ebp` — Saves the caller's frame/base pointer on the stack.
-   * `mov %esp, %ebp` — Sets the current top of the stack (`%esp`) as the callee's new base pointer (`%ebp`).
-   * `sub $N, %esp` — Allocates space for local variables (pushed in declaration order; accessed via negative offsets from `%ebp`, e.g., `-8(%ebp)`).
-3. **Callee Epilogue (Return):**
-   * `mov %ebp, %esp` and `pop %ebp` — Restores the caller's `%ebp` from `(%ebp)`.
-   * `ret` — Pops the saved return address from `4(%ebp)` into `%eip` and resumes execution in the caller.
+   * push arguments onto stack in reverse
+   * push return address
+   * jump to function address
+1. **Callee Prologue:**
+   * push old frame pointer (ebp) onto stack 
+   * set current frame pointer to where the end of stack is
+   * push local variables onto stack
+1. **Callee Epilogue (Return):**
+   * reset previous stack frame
+   * jump back to return address
 
 ---
 
@@ -841,70 +814,3 @@ After compromising a target and installing persistent backdoors, attackers remov
 * **Endpoint Cleanup:** Clear browser history, temporary internet files, cookies, and recent document lists (using password-protected cleanup utilities scheduled at startup or intervals).
 
 ---
-
-### 5.2 Advanced Persistent Threats (APTs)
-
-An **APT** is a sophisticated, well-resourced, targeted campaign that evades conventional perimeter defenses to maintain long-term, covert access inside a target organization.
-
-#### The A-P-T Breakdown & Characteristics
-* **Advanced:** Adapts dynamically to defender countermeasures, develops or purchases **zero-day exploits**, and employs extreme stealth.
-* **Persistent:** Objective-driven and specific; repeatedly attempts multiple intrusion methods until successful; maintains long-term Command & Control (C&C) connectivity with **very low to zero target downtime**.
-* **Threat:** Backed by well-financed, highly motivated human adversaries (nation-state or organized threat groups).
-* **Primary Targets:**
-  * *Enterprises:* Banking, finance, insurance, petrochemical/energy, transport, media.
-  * *Telecommunications:* ISPs, NSPs, mobile and telco operators.
-  * *Government:* Defense, CERT/CSIRT, intelligence agencies, public utilities.
-
-#### OSINT Intelligence Gathering & Threat Modeling
-* **Passive OSINT:** Collecting intelligence from publicly available sources with **zero direct interaction** with target infrastructure.
-* **Semi-Passive OSINT:** Using generic reconnaissance methods that generate normal, non-suspicious network traffic (e.g., **DNS queries** and **WHOIS lookups**).
-* **Threat Modeling:** Mapping the target environment, categorizing assets by criticality/value, and assessing risks to prioritize high-value attack domains.
-
-#### Spear Phishing, Targeted Attack Model & 6-Stage APT Anatomy
-* **Spear Phishing:** Highly targeted social engineering using malicious URLs or weaponized attachments (PDF, PPT, XLS, DOC, ZIP) aimed at mid/high-level executives or trusted vendors.
-* **5-Step Targeted Attack Model:**
-  1. Attacker sends spear-phishing emails with malicious attachments/links.
-  2. Victim interacts with the email/attachment.
-  3. Initial endpoint is compromised.
-  4. Attacker performs lateral movement using remote management/admin tools (e.g., **Quasar RAT**) to compromise additional systems.
-  5. Sensitive information and critical intellectual property are exfiltrated.
-* **6-Stage APT Attack Anatomy:**
-  1. **Reconnaissance** $\rightarrow$ 2. **Phishing & Zero-Day Exploit** $\rightarrow$ 3. **Backdoor Installation** $\rightarrow$ 4. **Lateral Movement** $\rightarrow$ 5. **Data Gathering** $\rightarrow$ 6. **Exfiltration**
-  *(Tooling ecosystem: malware infection frameworks, browser exploit packs, Glype proxies, RATs/rootkits, morphing/obfuscation toolkits, underground exploit markets).*
-
----
-
-### 5.3 Dual Protection Strategies: Boundary Protection vs. Agile Defense
-
-| Dimension | Boundary Protection | Agile Defense |
-| :--- | :--- | :--- |
-| **Primary Focus** | **Penetration resistance** | **Information system resilience** |
-| **Adversary Location** | **Outside** the defensive perimeter | **Inside** the defensive perimeter |
-| **Core Objective** | Repel and block attacks at the border | Continue operating securely while under active attack |
-| **Key Mechanisms / Examples** | Firewalls, perimeter IPS, access controls | • Compartmentalization & segregation of critical assets<br>• Targeted allocation of security controls<br>• Virtualization & obfuscation techniques<br>• Encryption of data at rest<br>• Reconstitution to a known secure state after failure |
-
-#### Preventive & Detection Controls
-* **Behavioral Analysis:** Anomaly/cyber-attack detection, attack source identification, and automated IP or Autonomous System (AS) blocking.
-* **Security Monitoring:** Maximizing Quality of Service (QoS) alongside continuous risk analysis.
-* **Incident Response:** Attack validation, enforcing blocking policies, and notifying affected subscribers.
-
-> [!question]- Practice Check: Module 5 (Covering Tracks & APTs)
-> **1. (MCQ)** What is the payload storage capacity of an RGB image when an attacker replaces the **two least significant bits (bits 0 and 1)** of each color channel?
-> * A) $\frac{1}{8}$
-> * B) $\frac{2}{8}$
-> * C) $\frac{3}{8}$
-> * D) $\frac{1}{2}$
->
-> **2. (MSQ)** Which of the following are examples of **Agile Defense** mechanisms designed to maintain resilience when an adversary is already inside the perimeter? *(Select all that apply)*
-> * A) Compartmentalization and segregation of critical assets
-> * B) Encryption of data at rest
-> * C) Reconstitution to a known secure state after failure
-> * D) Virtualization and obfuscation techniques
->
-> **3. (Descriptive)** Differentiate between **Passive OSINT** and **Semi-Passive OSINT**, and explain why an APT attacker uses **Winzapper** instead of clicking "Clear Log" in Windows Event Viewer.
->
-> ---
-> **Answers:**
-> 1. **B** ($\frac{2}{8}$, or $25\%$; modifying 1 LSB gives $\frac{1}{8}$).
-> 2. **A, B, C, D** (All four are core Agile Defense resilience strategies).
-> 3. **Passive OSINT** gathers intelligence exclusively from open/public sources without interacting with the target network, whereas **Semi-Passive OSINT** performs generic queries (such as DNS or WHOIS lookups) that generate normal traffic without raising suspicion. An attacker uses **Winzapper** (with Administrator privileges) to selectively delete only the specific audit events linked to their intrusion, because wiping an entire Windows Event Log generates a suspicious "Audit Log Cleared" event that immediately alerts administrators.
