@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ethhack/schctf1.md",
-                "mode": "source",
+                "file": "ise/rev2.md",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "schctf1"
+              "title": "rev2"
             }
           },
           {
@@ -202,6 +202,11 @@
   "active": "be99b0c70a31dab6",
   "lastOpenFiles": [
     "ethhack/schctf2.md",
+    "ise/rev2.md",
+    "ise/Unconfirmed 620454.crdownload",
+    "ise",
+    "New folder",
+    "ethhack/schctf1.md",
     "ethhack/manual sqli.md",
     "ethhack/Pasted image 20261113111742.png",
     "cybersecurity_career_certification_guide_singapore.md",
@@ -227,17 +232,12 @@
     "eth hacking/phase-4-priv-escalation/linux/08_interesting_files.md",
     "eth hacking/phase-4-priv-escalation/linux/07_Cron_Jobs.md",
     "eth hacking/phase-4-priv-escalation/linux/06_writable_files.md",
-    "eth hacking/phase-4-priv-escalation/linux/05_capabilities.md",
-    "eth hacking/phase-4-priv-escalation/linux/04_suid_binaries.md",
     "eth hacking/phase-4-priv-escalation/windows",
     "eth hacking/phase-4-priv-escalation/linux",
     "eth hacking/phase-2-enumeration/80_443_http",
     "eth hacking/phase-2-enumeration/139_445_smb",
     "eth hacking/reference",
     "eth hacking/phase-5-active-directory",
-    "eth hacking/phase-4-priv-escalation",
-    "eth hacking/phase-3-foothold",
-    "eth hacking/phase-1-active-recon",
     "ethhack/Pasted image 20261113112504.png",
     "ethhack/Pasted image 20261113111651.png"
   ]
