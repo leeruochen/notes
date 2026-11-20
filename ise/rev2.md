@@ -46,7 +46,11 @@ date: 2026-10-22
 - Components are **higher-level abstractions than objects** and encapsulate their internal structure.
 - Components collaborate with each other through **well-defined interfaces**.
 - Components can be a **collection of classes, a web service, or a resource**.
-- Components are to be **modular, portable, replaceable, reusable**.
+- Components are to be 
+  - **modular
+  - **portable**
+  - **replaceable
+  - **reusable**.
 - Makes discussion easier at higher levels for clients.
 
 ### Interfaces, Nesting, Ports & Delegation
@@ -69,6 +73,7 @@ date: 2026-10-22
 > - `ClientCollectionSystem` needs an interface called `ISchedule` (via Port 2), used by `ClientManager`, so a required connector (`<<delegate>>`) is drawn.
 > - The system provides `IClientData` (via Port 1), provided by `ClientManager`, so a provider (`<<delegate>>`) is drawn.
 > - Internally, `ClientManager` interacts with `SensorManager` via `ISensorControl` and `VideoManager` via `IVideoControl`.
+> ![[Pasted image 20261120211746.png]]
 
 > [!example] Example 3 — BlogApp Site (Class Diagram to Component Diagram)
 > 3 components can be created from the class diagram:
@@ -77,22 +82,22 @@ date: 2026-10-22
 > 3. **BlogPosts:** `Post`, `Comment`, `Paginate`, `PostManagement`, `CommentManagement`
 >
 > *Components can be any encapsulated unit in a system.*
-
+![[Pasted image 20261120211800.png]]
 ### Project Guideline to Creating Components
-1. What are the main responsibilities of the system?
-2. Which classes belong together because they serve the same responsibility?
-3. What does each component need from another component?
-4. Who provides that service and who requires it?
-5. Does my component diagram still align with my class diagram and the rest of my system diagram?
-6. New interface classes are probably needed to be modelled in the component diagram.
-7. Class diagram may not have a database inside, but classes may need to interact with it.
+1. What are the **main responsibilities** of the system?
+2. Which **classes belong together because they serve the same responsibility?**
+3. What does each **component need from another** component?
+4. **Who provides that service and who requires it?**
+5. Does my **component diagram still align with my class diagram** and the rest of my system diagram?
+6. **New interface classes** are probably needed to be modelled in the component diagram.
+7. Class diagram may not have a **database inside**, but classes may need to interact with it.
 
 ### Common Mistakes
 - Components are higher-level abstractions than objects and encapsulate internal structure; **do not provide too much detail**.
-- Given a component, any lollipop or socket should have a paired lollipop or socket — **no dangling lollipops or sockets** with no connections unless it is to external components.
+- **no dangling lollipops or sockets** with no connections unless it is to external components.
 - **Do not share lines** in the notation.
-- Use a **port** when you want to represent a specific point of interaction provided by an encapsulated component.
-- Double check modeling if a component only has requires (socket) but no provides (lollipop), or vice versa.
+- Use a **port** when you want to represent a point of interaction
+- **Component needs both lollipop and socket**
 - User interface / dashboard **do not need to be a separate component**.
 - A component **can have both** a required interface and a provided interface.
 - A **lollipop can be shared** by more than one component.
