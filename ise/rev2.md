@@ -24,9 +24,9 @@ date: 2026-10-22
 - Components collaborate with each other through **well-defined interfaces**.
 - Components can be a **collection of classes, a web service, or a resource**.
 - Components are to be 
-  - **modular
+  - **modular**
   - **portable**
-  - **replaceable
+  - **replaceable**
   - **reusable**.
 - Makes discussion easier at higher levels for clients.
 

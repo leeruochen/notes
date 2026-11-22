@@ -14,6 +14,13 @@ lollipops can be shared by different components
 **definition of software engineering design**
 software eng design is the analyzing, evaluating, validating, and specifying the architectural, detailed, and construction models to build software in accordance to their functional and non functional requirements
 
+**Software design ICAFQ**
+importance - RQFRME
+challenges - RIEEI
+activities - ADCIDM
+fundamentals MAECCSSC
+quality - UMSPPRTAI
+
 **importance of software design**
 **RQFRME**
 responsibilities are mapped to models of software
@@ -23,12 +30,19 @@ reusable solutions
 improves project management
 increase efficiency in resource allocation
 
+**software design challenges RIEEI**
+- requirements volatility
+- inconsistent development process
+- ever changing tech
+- ethical practice
+- design influences
+
 **software design activities**
 **ADCIDM**
-architecture design
-detailed design
-construction design
-human computer interfaces
+architecture design - focus on NFR, provide blackbox model, macrodesign
+detailed design - refine architecture to be sufficient for construction to begin, provide whitebox, address FRs
+construction design - support system quality attributes, work on detailed more
+human computer interfaces - to optimize interface btween
 documentation
 management
 
@@ -41,6 +55,18 @@ cohesion and coupling
 separation of interface and implementation
 sufficiency - how well software can provide the service
 completeness - how well designed the software to provide
+
+**software quality requirements**
+**UMSPPRTAI**
+usability - how hard to learn to use
+maintainability - how hard to make changes
+security - ability to protect
+portability - how well it can adapt to diff envs
+performance - work under heavy resource
+reliability - failure rate
+testability - how complex when verifying system funcs
+availability - uptime
+interoperability - ability to work with other software
 
 **C4 model**
 Context, the whole system at the highest level eg. customer context interact with portal context
