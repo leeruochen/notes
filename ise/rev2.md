@@ -16,30 +16,7 @@ date: 2026-10-22
 > - **Duration:** 45 minutes (Closed-book)
 > - **Question Types:** MCQ, Short Answers, and Multi-Select
 
-## Table of Contents
-- [[#Component Diagrams]]
-- [[#Software Engineering Design]]
-- [[#Overview of Architecture]]
-- [[#C4 Model]]
-- [[#4+1 View of Architecture]]
-- [[#Architectural Patterns]]
-- [[#Design Patterns (Gang of Four)]]
-- [[#Non-Execution-Based Testing]]
-- [[#Execution-Based Testing]]
-- [[#Blackbox Testing]]
-- [[#Whitebox Testing]]
-- [[#User Acceptance Testing (UAT)]]
-- [[#Application Packaging]]
-- [[#Software Configuration Management (SCM)]]
-- [[#Version Management]]
-- [[#System Building]]
-- [[#Release Management]]
-- [[#Continuous Integration & CI/CD]]
-- [[#Software Maintenance]]
-- [[#Refactoring]]
-
 ---
-
 ## Component Diagrams
 
 - **Components** are independent units within a system that encapsulate a collection of data and functions.
@@ -73,7 +50,8 @@ date: 2026-10-22
 > - `ClientCollectionSystem` needs an interface called `ISchedule` (via Port 2), used by `ClientManager`, so a required connector (`<<delegate>>`) is drawn.
 > - The system provides `IClientData` (via Port 1), provided by `ClientManager`, so a provider (`<<delegate>>`) is drawn.
 > - Internally, `ClientManager` interacts with `SensorManager` via `ISensorControl` and `VideoManager` via `IVideoControl`.
-> ![[Pasted image 20261120211746.png]]
+> - ![[Pasted image 20261121173851.png]]
+
 
 > [!example] Example 3 — BlogApp Site (Class Diagram to Component Diagram)
 > 3 components can be created from the class diagram:
@@ -82,25 +60,28 @@ date: 2026-10-22
 > 3. **BlogPosts:** `Post`, `Comment`, `Paginate`, `PostManagement`, `CommentManagement`
 >
 > *Components can be any encapsulated unit in a system.*
-![[Pasted image 20261120211800.png]]
+> ![[Pasted image 20261121173908.png]]
+
 ### Project Guideline to Creating Components
 1. What are the **main responsibilities** of the system?
 2. Which **classes belong together because they serve the same responsibility?**
 3. What does each **component need from another** component?
-4. **Who provides that service and who requires it?**
+4. **Who provides that service and who requires it?** lollipops and sockets
 5. Does my **component diagram still align with my class diagram** and the rest of my system diagram?
 6. **New interface classes** are probably needed to be modelled in the component diagram.
 7. Class diagram may not have a **database inside**, but classes may need to interact with it.
 
 ### Common Mistakes
-- Components are higher-level abstractions than objects and encapsulate internal structure; **do not provide too much detail**.
+- **do not provide too much detail**. high level abstraction than objects
 - **no dangling lollipops or sockets** with no connections unless it is to external components.
 - **Do not share lines** in the notation.
-- Use a **port** when you want to represent a point of interaction
+- Use a **port** for interactions
 - **Component needs both lollipop and socket**
 - User interface / dashboard **do not need to be a separate component**.
 - A component **can have both** a required interface and a provided interface.
 - A **lollipop can be shared** by more than one component.
+
+DDLPBS
 
 ---
 
@@ -127,6 +108,16 @@ date: 2026-10-22
 - Good software design **minimizes effects of requirements volatility**:
   - Minimize impact on schedule and cost.
 
+overall of importance **RQFRME**
+- requirements mapped to models of software
+- ensure quality of system
+- forms the foundation
+- reusable solutions
+- improve project management
+- more efficient in resource allocation
+- shields from having one guy owning whole system
+- minimize requirements volatility
+
 ### Software Design Challenges
 - Requirements volatility
 - Inconsistent development process
@@ -138,12 +129,12 @@ date: 2026-10-22
 - A set of activities and controls that specify how resources work together for the production of software design.
 
 #### AI in Design Process
-| Step | AI Suggests | Engineer Checks |
-| :--- | :--- | :--- |
-| **1. Clarify needs** | Questions, missing cases | Real needs and constraints |
-| **2. Explore options** | Components and interfaces | Fit and trade-offs |
-| **3. Evaluate designs** | Risks and test ideas | Evidence of system quality |
-| **4. Refine design** | Design revisions and prototypes | Changes and final decisions |
+| Step                    | AI Suggests                     | Engineer Checks             |
+| :---------------------- | :------------------------------ | :-------------------------- |
+| **1. Clarify needs**    | Questions, missing cases        | Real needs and constraints  |
+| **2. Explore options**  | Components and interfaces       | Fit and trade-offs          |
+| **3. Evaluate designs** | Risks and test ideas            | Evidence of system quality  |
+| **4. Refine design**    | Design revisions and prototypes | Changes and final decisions |
 
 ### Software Design Activities
 1. **Software Architecture:**
@@ -233,10 +224,10 @@ date: 2026-10-22
 
 ### The 4 Levels (Internet Banking System Example)
 1. **Level 1: System Context Diagram**
-   - Shows the software system in context with users (e.g., Personal Banking Customer) and external software systems (e.g., E-mail System, Mainframe Banking System).
-2. **Level 2: Container Diagram** *(zoom in of a Context)*
-   - Shows high-level technical building blocks / containers inside the system (e.g., Web Application, Single-Page Application, Mobile App, API Application, Database) and protocols (HTTPS, JSON/HTTPS, JDBC, SMTP, XML/HTTPS).
-3. **Level 3: Component Diagram** *(zoom in of a Container)*
+   - shows the whole system, what interacts with what at the highest level like customer interacting with portal, and portal interacting with other systems(email, main system)
+1. **Level 2: Container Diagram** *(zoom in of a Context)*
+   - Shows high-level containers inside the system (e.g., Web Application, Single-Page Application, Mobile App, API Application, Database)
+1. **Level 3: Component Diagram** *(zoom in of a Container)*
    - Shows components inside a specific container (e.g., inside API Application: Sign In Controller, Reset Password Controller, Accounts Summary Controller, Security Component, E-mail Component, Mainframe Banking System Facade).
 4. **Level 4: Code** *(zoom in of a Component)*
    - Shows UML class diagrams / code-level details of a component (e.g., `MainframeBankingSystemFacadeImpl`, `GetBalanceRequest`, `BankingSystemConnection`, etc.).
@@ -254,13 +245,13 @@ date: 2026-10-22
 - Decisions made can be organized around **4 views** (Logical, Development, Physical, Process), then illustrated by a few selected **use cases (fifth view)**.
 - Communicates architecture to different stakeholders.
 
-| View | Focus / Perspective | UML Diagrams Used |
-| :--- | :--- | :--- |
-| **Logical view** | Functionality that the system provides to end users | Class, state, component diagrams |
-| **Process view** | Dynamic aspects of the system, system processes and how they communicate; focuses on the run-time behaviour of the system | Sequence, communication, activity diagrams |
-| **Development / Implementation view** | System from a programmer's perspective; concerned with software management | Package diagram and source code |
-| **Physical / Deployment view** | System from a system engineer's POV; concerned with topology of software components on the physical layer as well as physical connections between these components | Deployment diagram |
-| **Use case / Scenarios view (+1)** | Describes sequences of interactions between objects and between processes. Used to identify architectural elements, illustrate and validate architecture design, and serve as a starting point for tests of an architecture prototype | Use case diagrams / scenarios |
+| View                                  | Focus / Perspective                                                                                                                                                                                                                   | UML Diagrams Used                          |
+| :------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------- |
+| **Logical view**                      | Functionality that the system provides to end users                                                                                                                                                                                   | Class, state, component diagrams           |
+| **Process view**                      | Dynamic aspects of the system, system processes and how they communicate; focuses on the run-time behaviour of the system                                                                                                             | Sequence, communication, activity diagrams |
+| **Development / Implementation view** | System from a programmer's perspective; concerned with software management                                                                                                                                                            | Package diagram and source code            |
+| **Physical / Deployment view**        | System from a system engineer's POV; concerned with topology of software components on the physical layer as well as physical connections between these components                                                                    | Deployment diagram                         |
+| **Use case / Scenarios view (+1)**    | Describes sequences of interactions between objects and between processes. Used to identify architectural elements, illustrate and validate architecture design, and serve as a starting point for tests of an architecture prototype | Use case diagrams / scenarios              |
 
 ### Key Tasks in Architectural Design
 - Identify:
@@ -296,11 +287,11 @@ date: 2026-10-22
   - **Presentation layer:** Logic here focuses on user interface concerns, devoid of business logic for easier tests.
   - **Business / Application layer:** Holds implementation of business logic of app, including business rules, validations, and calculation logic. Business entities for application's domain are placed here.
   - **Data / Persistence layer:** Provides functionality to access and manage data. Layer contains a data store for persistent storage. Provides services for business layer.
-- Each layer is a level of abstraction around a role and is not concerned with how other layers work.
-- **Layers are closed:** a request has to move layer to layer sequentially (no skipping).
-- **Layers of isolation:** changes made in one layer usually do not impact components in other layers.
+- layer dont care how other layers work
+- closed layers: requests has to go through each layer to reach other points
+- changes in one layer do not affect others
 - **Disadvantages:**
-  - More code necessary for layered apps (to provide interfaces and other logic necessary for comms).
+  - More code necessary for layered because of layers
   - Development teams have to be diligent about placing code in the correct layer to not leak logic to others.
   - Inefficiencies in having requests go through multiple layers; moving layer to layer may require data representations to transform.
 
@@ -316,6 +307,7 @@ date: 2026-10-22
 > - `EmailServer` provides two separate services to client, implemented by two subcomponents (delegated via ports):
 >   - **Retrieval:** provides functions for client to access and download emails stored on server via **IMAP**.
 >   - **Transport:** allows client to submit emails for delivery to other users via **SMTP**.
+>   - ![[Pasted image 20261121220644.png]]
 
 ### 3. Interactive — Model-View-Controller (MVC)
 - Used in interactive apps that require flexible incorporation of human computer interfaces.
@@ -329,6 +321,7 @@ date: 2026-10-22
 > - Allows users to find properties for sale.
 > - Composed of two views (`SmartPhoneView`, `PCView`), each with their own controller (`SmartPhoneController` via `ISpeechController`, `PCController` via `IMouseController`), and one model (`RealEstateModel` via `IModel`) that contains information.
 > - Both views are designed uniquely for usability on PC (interactive buttons/menus) and smartphone (smaller, supports speech recognition).
+> ![[Pasted image 20261121221936.png]]
 
 ---
 
@@ -421,7 +414,7 @@ Checking for quality **without running test cases** (static analysis).
      - Uses collected data to improve inspection process (optional).
    - *Metrics:*
      - Inspection rate (e.g., design pages inspected per hour).
-     - Fault density (e.g., faults per KLOC inspected).
+     - Fault density (e.g., faults per KLOC(thousand lines) inspected).
      - Fault detection rate / efficiency.
      - *Discussion question:* Does a 50% increase in fault detection rate mean quality has decreased, or inspection is more efficient? *(Ambiguous without context!)*
    - **Five-step formal process:** `overview` $\rightarrow$ `prep` $\rightarrow$ `inspection` $\rightarrow$ `rework` $\rightarrow$ `follow up`.

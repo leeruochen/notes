@@ -4,6 +4,9 @@ Lab box: `3.144.177.121` (also reachable via `lab.local` vhosts). Flags are 32-c
 
 set up 3.144.177.121    lab.local login.lab.local dev.lab.local in /etc/hosts (for kali)
 
+`sudo nano /etc/hosts`  
+→ added `3.144.177.121 login.lab.local`
+
 ---
 
 ## Challenge Walkthroughs
@@ -13,7 +16,7 @@ set up 3.144.177.121    lab.local login.lab.local dev.lab.local in /etc/hosts (f
 **Tools:** exiftool, base64, steghide
 
 1. Ran `exiftool ilovesit.jpeg` on the provided image. The **Comment** field held `NXVwM3I1M2N1cjNwNDU1dzByZA==` — recognizable as Base64 by its charset and `==` padding.
-2. Decoded it (`echo "..." | base64 -d`) to get the plaintext passphrase `5up3r53cur3p455w0rd`.
+2. Decoded it (`echo "..." | base64 -d`) to get the plaintext passphrase `5up3r53cur3p455w0rd`. or just base64decoder on google
 3. Ran `steghide extract -sf ilovesit.jpeg -p 5up3r53cur3p455w0rd` to pull the hidden payload out of the JPEG using that passphrase.
 4. Flag came out along with a note explaining *why* this worked: steghide hides data in a JPEG's **DCT coefficients** (used during lossy compression), not in raw pixel values. That's why naive LSB (least-significant-bit) steg tools find nothing in a JPEG — pixel-level hidden data wouldn't survive JPEG's lossy compression, so JPEG steg tools operate at the compression-coefficient level instead.
 
@@ -28,7 +31,8 @@ set up 3.144.177.121    lab.local login.lab.local dev.lab.local in /etc/hosts (f
 **Category:** Recon
 **Tools:** nmap, curl
 
-1. Since the previous challenge was about port 2222, this one hinted there's more to find — ran a full port scan: `nmap -p- -sV -T4 3.144.177.121`.
+1. Since the previous challenge was about port 2222, this one hinted there's more to find — ran a full port scan: 
+`nmap -p- -sV -T4 -v 3.144.177.121`
    - `-p-` scans all 65,535 ports (not just the default top 1000)
    - `-sV` probes each open port to fingerprint the running service/version
    - `-T4` speeds up scan timing
@@ -76,12 +80,19 @@ set up 3.144.177.121    lab.local login.lab.local dev.lab.local in /etc/hosts (f
 
 Both challenges share one walkthrough — the first five steps solve "and so it begins," and step 6 solves "more than just one."
 
-1. `login.lab.local` doesn't publicly resolve, so it was mapped manually: `sudo nano /etc/hosts` → added `3.144.177.121 login.lab.local`.
+1. `login.lab.local` doesn't publicly resolve, so it was mapped manually: 
+   `sudo nano /etc/hosts` 
+   → added `3.144.177.121 login.lab.local`
 2. Downloaded a directory wordlist: `wget .../SecLists/.../common.txt`.
-3. Fuzzed the site for hidden paths: `ffuf -w common.txt -u http://login.lab.local/FUZZ -e .bak,.env,.old,.txt,.zip,.swp`. This turned up `robots.txt` and a `/backup/` directory.
-4. Read `robots.txt` with curl to see its contents (a disallow entry pointing at/hinting toward the backup path).
-5. Requested `/backup/` directly — it showed a `flag.txt` file existed. A plain `curl` to it got kicked out (likely a basic WAF/User-Agent check), but adding a normal browser User-Agent bypassed it: `curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" http://login.lab.local/backup/flag.txt`. This flag turned out to belong to the *other* challenge, "and so it begins," not this one.
-6. For "more than just one" specifically: guessed that a **virtual host** might exist for a development environment, and tested the obvious name directly via the `Host` header: `curl -H "Host: dev.lab.local" http://3.144.177.121/`. This returned a distinct "Development Portal" page containing this challenge's actual flag.
+3. Fuzzed the site for hidden paths: 
+   `ffuf -w common.txt -u http://login.lab.local/FUZZ -e .bak,.env,.old,.txt,.zip,.swp` 
+4. This turned up `robots.txt` and a `/backup/` directory.
+5. Read `robots.txt` with curl to see its contents (a disallow entry pointing at/hinting toward the backup path).
+6. Requested `/backup/` directly — it showed a `flag.txt` file existed. A plain `curl` to it got kicked out (likely a basic WAF/User-Agent check), but adding a normal browser User-Agent bypassed it: 
+   `curl -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" http://login.lab.local/backup/flag.txt` 
+   
+   This flag turned out to belong to the *other* challenge, "and so it begins," not this one.
+1. For "more than just one" specifically: guessed that a **virtual host** might exist for a development environment, and tested the obvious name directly via the `Host` header: `curl -H "Host: dev.lab.local" http://3.144.177.121/`. This returned a distinct "Development Portal" page containing this challenge's actual flag.
 
 ### a lot of POSTS
 **Category:** Web
