@@ -12,7 +12,7 @@ OSINT challenges
 ctf --enum $TARGET
 
 
-LFI
+**LFI**
 go to the page, and click on the url to see where ? starts
 https://sit-lfi.chals.io/reader.php?page=welcome.php
 
@@ -23,7 +23,7 @@ ctf --lfi "curl -s 'https://sit-lfi.chals.io/reader.php?page={P}'" --file secret
 
 if no file path given, reference ctfkit.md, maybe run ctf --web
 
-SQLI, takes a long time
+**SQLI, takes a long time**
 run immediately
 ctf --find-input "https://sit-sqli.chals.io"
 
@@ -50,5 +50,29 @@ run each ctf --sqlmap-auto command, follow it.
 
 reference ctfkit.md if cant.
 
-BOF
+**BOF**
 cd pwntools-env/venv/bof-scripts-main/
+
+we will probably be given an ip, with a port for us to nc into
+```
+nc 3.144.177.121 5002
+```
+
+reference bof.md
+if cannot, then reference schctf3.md for pwntools
+
+**Wireless**
+
+given a .pcap file
+lowkey cooked but its 3 hardcoded 
+ctf --wifi-hidden
+ctf --wifi-crack
+ctf --evil-twin
+reference walkthrough.pdf
+
+
+
+**Steg**
+given an image file
+ctf --stegchain <<image>>
+
