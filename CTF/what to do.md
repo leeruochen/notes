@@ -1,5 +1,10 @@
 # What To Do
 
+set up 3.144.177.121    lab.local login.lab.local dev.lab.local in /etc/hosts (for kali)
+
+`sudo nano /etc/hosts`  
+→ added `3.144.177.121 login.lab.local`
+
 ```bash
 source /home/milizes/pwntools-env/venv/bin/activate
 ```
@@ -33,6 +38,8 @@ If we are given the target file, like `/secrets/notes.txt`, then we run:
 
 ```bash
 ctf --lfi "curl -s 'https://sit-lfi.chals.io/reader.php?page={P}'" --file secrets/notes.txt
+
+ctf --lfi "curl -s '$T/reader.php?page={P}'" --file secrets/notes.txt
 ```
 
 If no file path given, reference `ctfkit.md`, maybe run `ctf --web`.
@@ -43,6 +50,8 @@ Run immediately:
 
 ```bash
 ctf --find-input "https://sit-sqli.chals.io"
+
+ctf --find-input $S
 ```
 
 Example output:
